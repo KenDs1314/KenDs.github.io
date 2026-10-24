@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PÁGINA WEB</title>
+  <title>KENDS WEB</title>
   <link rel="stylesheet" href="css/index.css">
   <script src="js/index.js" defer></script>
   <style>
     @font-face {
       font-family: 'indie';
-      src: url('/font/IndieFlower.ttf') format('truetype');
+      src: url('font/IndieFlower.ttf') format('truetype');
       font-display: swap;
     }
 
@@ -26,7 +26,7 @@
     body {
       margin: 0;
       background-color: var(--negro);
-      background-image: url('/fotos/fondo.png');
+      background-image: url('fotos/fondo.png');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -34,7 +34,6 @@
       font-family: 'Courier New', monospace;
     }
 
-    /* ---------- ENCABEZADO = ARTICLE ---------- */
     header { padding: 16px; }
 
     .vlog {
@@ -49,20 +48,14 @@
       overflow: hidden;
     }
 
-    /* líneas de escaneo tipo cámara VHS */
     .vlog::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: repeating-linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, .05) 0 1px,
-        transparent 1px 3px
-      );
+      background: repeating-linear-gradient(to bottom, rgba(255,255,255,.05) 0 1px, transparent 1px 3px);
       pointer-events: none;
     }
 
-    /* esquinas del visor */
     .vlog::after {
       content: "";
       position: absolute;
@@ -79,9 +72,7 @@
 
     .vlog-barra {
       position: absolute;
-      top: 22px;
-      left: 28px;
-      right: 28px;
+      top: 22px; left: 28px; right: 28px;
       display: flex;
       justify-content: space-between;
       color: var(--verde);
@@ -92,8 +83,7 @@
     .rec::before {
       content: "";
       display: inline-block;
-      width: .7em;
-      height: .7em;
+      width: .7em; height: .7em;
       margin-right: .5em;
       border-radius: 50%;
       background: var(--rojo);
@@ -122,7 +112,6 @@
 
     .lema {
       margin: 0 0 20px;
-      color: var(--plata);
       font-family: 'indie', sans-serif;
       font-size: 1.3rem;
     }
@@ -148,34 +137,48 @@
       outline-offset: 3px;
     }
 
+    .panel {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto 16px;
+      padding: 24px;
+      background: rgba(0, 0, 0, .72);
+      border: 2px solid var(--violeta);
+      box-shadow: 0 0 18px var(--violeta);
+    }
+
+    .panel:target { display: block; }
+
+    .panel h2 {
+      margin-top: 0;
+      color: var(--verde);
+      font-family: 'indie', sans-serif;
+      text-shadow: 0 0 8px var(--verde);
+    }
+
+    .panel ul { list-style: none; padding: 0; margin: 0; }
+    .panel li { margin-bottom: 18px; }
+    .panel a { color: var(--verde); }
+    .panel p { margin: 4px 0 0; }
+
+    details {
+      margin-bottom: 12px;
+      border: 1px dashed var(--violeta);
+      padding: 10px 14px;
+    }
+    summary {
+      cursor: pointer;
+      color: var(--verde);
+      font-family: 'indie', sans-serif;
+      font-size: 1.2rem;
+    }
+    details ol { margin: 10px 0 0; padding-left: 22px; }
+    details li { margin-bottom: 6px; }
+    code { color: var(--verde); }
+
     @media (prefers-reduced-motion: reduce) {
       h1, .rec::before { animation: none; }
     }
-
-    .panel {
-  display: none;
-  max-width: 900px;
-  margin: 16px auto;
-  padding: 24px;
-  background: rgba(0, 0, 0, .72);
-  border: 2px solid var(--violeta);
-  box-shadow: 0 0 18px var(--violeta);
-}
-
-.panel:target { display: block; }
-
-.panel h2 {
-  margin-top: 0;
-  color: var(--verde);
-  font-family: 'indie', sans-serif;
-  text-shadow: 0 0 8px var(--verde);
-}
-
-.panel ul { list-style: none; padding: 0; margin: 0; }
-.panel li { margin-bottom: 18px; }
-.panel a { color: var(--verde); }
-.panel p { margin: 4px 0 0; }
-    
   </style>
 </head>
 <body>
@@ -183,43 +186,82 @@
     <article class="vlog">
       <div class="vlog-barra">
         <span class="rec">REC</span>
-        <span> #001</span>
+        <span>#001</span>
         <span id="tiempo">00:00:00</span>
       </div>
 
       <h1>KENDS WEB</h1>
-      <p class="lema"> pequeña web para de cosas de programacion, guias y proyectos varios que haga con el tiempo ✦</p>
+      <p class="lema">Pequeña web para mis cosas de programación, guías y proyectos varios que haga con el tiempo ✦</p>
 
       <nav>
-        <a href="#">[ visitas ]</a>
+        <a href="#comentarios">[ comentarios ]</a>
         <a href="#proyectos">[ proyectos ]</a>
-        <a href="#">[ guias ]</a>
+        <a href="#guias">[ guías ]</a>
       </nav>
     </article>
-
-  <section id="proyectos" class="panel">
-  <h2>Proyectos</h2>
-  <ul>
-    <li>
-      <a href="https://github.com/KENDS1314/nombre-repo">Nombre del proyecto</a>
-      <p>Una línea explicando qué hace.</p>
-    </li>
-    <li>
-      <a href="#">Otro proyecto</a>
-      <p>Descripción corta.</p>
-    </li>
-  </ul>
-  </section>
-  
   </header>
 
+  <section id="comentarios" class="panel">
+    <h2>Comentarios</h2>
+    <script src="https://giscus.app/client.js"
+      data-repo="KENDS1314/kends1314.github.io"
+      data-repo-id="PEGA_AQUI_EL_REPO_ID"
+      data-category="General"
+      data-category-id="PEGA_AQUI_EL_CATEGORY_ID"
+      data-mapping="pathname"
+      data-reactions-enabled="1"
+      data-input-position="top"
+      data-theme="transparent_dark"
+      data-lang="es"
+      crossorigin="anonymous"
+      async>
+    </script>
+  </section>
+
+  <section id="proyectos" class="panel">
+    <h2>Proyectos</h2>
+    <ul>
+      <li>
+        <a href="https://github.com/KENDS1314/nombre-repo">Nombre del proyecto</a>
+        <p>Una línea explicando qué hace.</p>
+      </li>
+      <li>
+        <a href="#proyectos">Otro proyecto</a>
+        <p>Descripción corta.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="guias" class="panel">
+    <h2>Guías</h2>
+
+    <details>
+      <summary>Publicar una web en GitHub Pages</summary>
+      <ol>
+        <li>Crea un repositorio llamado <code>tuusuario.github.io</code>.</li>
+        <li>Sube <code>index.html</code> y tus carpetas a la raíz.</li>
+        <li>Usa rutas relativas: <code>fotos/fondo.png</code>.</li>
+        <li>En <em>Settings → Pages</em> elige la rama y <code>/ (root)</code>.</li>
+        <li>Espera un par de minutos y abre tu dirección.</li>
+      </ol>
+    </details>
+
+    <details>
+      <summary>Título de otra guía</summary>
+      <ol>
+        <li>Paso uno.</li>
+        <li>Paso dos.</li>
+        <li>Paso tres.</li>
+      </ol>
+    </details>
+  </section>
+
   <script>
-    // Contador tipo cámara: cuánto llevas en la página
     const el = document.getElementById('tiempo');
     const inicio = Date.now();
+    const p = n => String(n).padStart(2, '0');
     setInterval(() => {
       const s = Math.floor((Date.now() - inicio) / 1000);
-      const p = n => String(n).padStart(2, '0');
       el.textContent = `${p(Math.floor(s / 3600))}:${p(Math.floor(s / 60) % 60)}:${p(s % 60)}`;
     }, 1000);
   </script>
