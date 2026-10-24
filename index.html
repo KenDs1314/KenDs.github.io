@@ -124,6 +124,132 @@
       gap: 8px 18px;
     }
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KENDS WEB</title>
+  <link rel="stylesheet" href="css/index.css">
+  <script src="js/index.js" defer></script>
+  <style>
+    @font-face {
+      font-family: 'indie';
+      src: url('font/IndieFlower.ttf') format('truetype');
+      font-display: swap;
+    }
+
+    :root {
+      --negro: #000;
+      --verde: #1efe06;
+      --violeta: #8a1cff;
+      --rojo: #ff1744;
+      --plata: #c9c9d6;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background-color: var(--negro);
+      background-image: url('fotos/fondo.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: var(--plata);
+      font-family: 'Courier New', monospace;
+    }
+
+    header { padding: 16px; }
+
+    .vlog {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      min-height: 320px;
+      padding: 56px 24px 24px;
+      background: rgba(0, 0, 0, .72);
+      border: 2px solid var(--violeta);
+      box-shadow: 0 0 0 1px #000, 0 0 24px var(--violeta), inset 0 0 40px rgba(138, 28, 255, .25);
+      overflow: hidden;
+    }
+
+    .vlog::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(to bottom, rgba(255,255,255,.05) 0 1px, transparent 1px 3px);
+      pointer-events: none;
+    }
+
+    .vlog::after {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 2px solid var(--verde);
+      clip-path: polygon(
+        0 0, 28px 0, 28px 2px, 2px 2px, 2px 28px, 0 28px,
+        0 100%, 0 calc(100% - 28px), 2px calc(100% - 28px), 2px calc(100% - 2px), 28px calc(100% - 2px), 28px 100%,
+        calc(100% - 28px) 100%, calc(100% - 28px) calc(100% - 2px), calc(100% - 2px) calc(100% - 2px), calc(100% - 2px) calc(100% - 28px), 100% calc(100% - 28px), 100% 100%,
+        100% 0, calc(100% - 28px) 0, calc(100% - 28px) 2px, calc(100% - 2px) 2px, calc(100% - 2px) 28px, 100% 28px, 100% 0
+      );
+      pointer-events: none;
+    }
+
+    .vlog-barra {
+      position: absolute;
+      top: 22px; left: 28px; right: 28px;
+      display: flex;
+      justify-content: space-between;
+      color: var(--verde);
+      font-size: .9rem;
+      text-shadow: 0 0 6px var(--verde);
+    }
+
+    .rec::before {
+      content: "";
+      display: inline-block;
+      width: .7em; height: .7em;
+      margin-right: .5em;
+      border-radius: 50%;
+      background: var(--rojo);
+      box-shadow: 0 0 8px var(--rojo);
+      animation: parpadeo 1.2s steps(1) infinite;
+    }
+
+    @keyframes parpadeo { 50% { opacity: 0; } }
+
+    h1 {
+      margin: 8px 0 4px;
+      color: var(--verde);
+      font-family: 'indie', sans-serif;
+      font-size: clamp(2.4rem, 11vw, 5rem);
+      line-height: 1;
+      text-shadow: 3px 0 var(--rojo), -3px 0 var(--violeta), 0 0 18px var(--verde);
+      animation: glitch 6s infinite;
+    }
+
+    @keyframes glitch {
+      0%, 92%, 100% { transform: none; }
+      93% { transform: translateX(-4px) skewX(6deg); }
+      95% { transform: translateX(5px); }
+      97% { transform: translateX(-2px) skewX(-4deg); }
+    }
+
+    .lema {
+      margin: 0 0 20px;
+      font-family: 'indie', sans-serif;
+      font-size: 1.3rem;
+    }
+
+    .vlog nav {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+    }
+
     .vlog nav a {
       color: var(--plata);
       text-decoration: none;
