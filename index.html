@@ -164,6 +164,14 @@
 
     .panel {
       display: none;
+      opacity: 0;
+      transform: scaleY(.02);
+      filter: brightness(3);
+      transition:
+        opacity .35s,
+        transform .35s cubic-bezier(.7, 0, .3, 1),
+        filter .35s,
+        display .35s allow-discrete;
       max-width: 900px;
       margin: 0 auto 16px;
       padding: 24px;
@@ -172,7 +180,20 @@
       box-shadow: 0 0 18px var(--violeta);
     }
 
-    .panel:target { display: block; }
+    .panel:target {
+      display: block;
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+
+    @starting-style {
+      .panel:target {
+        opacity: 0;
+        transform: scaleY(.02);
+        filter: brightness(3);
+      }
+    }
 
     .panel h2 {
       margin-top: 0;
@@ -245,6 +266,41 @@
     details li { margin-bottom: 6px; }
     code { color: var(--verde); }
 
+    .redes {
+      width: calc(100% - 32px);
+      max-width: 900px;
+      margin: 32px auto 16px;
+      padding-top: 12px;
+      border-top: 1px solid var(--violeta);
+      box-shadow: 0 -4px 12px -6px var(--violeta);
+    }
+
+    .redes nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .redes a {
+      display: block;
+      width: 24px;
+      height: 24px;
+      color: var(--verde);
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+      filter: drop-shadow(1px 0 var(--rojo)) drop-shadow(-1px 0 var(--violeta));
+      transition: filter .15s, transform .15s;
+    }
+
+    .redes a:hover,
+    .redes a:focus-visible,
+    .redes a:active {
+      filter: drop-shadow(2px 0 var(--rojo)) drop-shadow(-2px 0 var(--violeta)) drop-shadow(0 0 6px var(--verde));
+      transform: scale(1.15);
+    }
+
+    .redes svg { width: 100%; height: 100%; display: block; }
+
     #crt {
       position: fixed;
       inset: 0;
@@ -280,6 +336,7 @@
     @media (prefers-reduced-motion: reduce) {
       h1, .rec::before, .ep-estado::before { animation: none; }
       #crt { display: none; }
+      .panel { transition: none; }
     }
   </style>
 </head>
@@ -369,9 +426,26 @@
     </details>
   </section>
 
+  <footer class="redes">
+    <nav aria-label="Redes sociales">
+      <a href="https://github.com/KENDS1314" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+      </a>
+      <a href="mailto:Kends1314@gmail.com" aria-label="Correo Gmail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/>
+          <path d="M3 7.5 12 14l9-6.5"/>
+        </svg>
+      </a>
+    </nav>
+  </footer>
+
   <script>
     const el = document.getElementById('tiempo');
     const inicio = Date.now();
+    /** @param {number} n */
     const p = n => String(n).padStart(2, '0');
     setInterval(() => {
       const s = Math.floor((Date.now() - inicio) / 1000);
@@ -379,6 +453,7 @@
     }, 1000);
 
     const crt = document.getElementById('crt');
+    /** @param {number} ms */
     const esperar = ms => new Promise(r => setTimeout(r, ms));
     const cargada = new Promise(r => {
       if (document.readyState === 'complete') r();
@@ -392,6 +467,15 @@
       crt.classList.add('listo');
       document.body.classList.remove('cargando');
       setTimeout(() => crt.remove(), 400);
+    });
+
+    document.querySelectorAll('.vlog nav a').forEach(enlace => {
+      enlace.addEventListener('click', evento => {
+        if (location.hash === enlace.getAttribute('href')) {
+          evento.preventDefault();
+          location.hash = '';
+        }
+      });
     });
   </script>
 </body>
