@@ -151,6 +151,31 @@
     @media (prefers-reduced-motion: reduce) {
       h1, .rec::before { animation: none; }
     }
+
+    .panel {
+  display: none;
+  max-width: 900px;
+  margin: 16px auto;
+  padding: 24px;
+  background: rgba(0, 0, 0, .72);
+  border: 2px solid var(--violeta);
+  box-shadow: 0 0 18px var(--violeta);
+}
+
+.panel:target { display: block; }
+
+.panel h2 {
+  margin-top: 0;
+  color: var(--verde);
+  font-family: 'indie', sans-serif;
+  text-shadow: 0 0 8px var(--verde);
+}
+
+.panel ul { list-style: none; padding: 0; margin: 0; }
+.panel li { margin-bottom: 18px; }
+.panel a { color: var(--verde); }
+.panel p { margin: 4px 0 0; }
+    
   </style>
 </head>
 <body>
@@ -171,6 +196,21 @@
         <a href="#">[ guias ]</a>
       </nav>
     </article>
+
+  <section id="proyectos" class="panel">
+  <h2>Proyectos</h2>
+  <ul>
+    <li>
+      <a href="https://github.com/KENDS1314/nombre-repo">Nombre del proyecto</a>
+      <p>Una línea explicando qué hace.</p>
+    </li>
+    <li>
+      <a href="#">Otro proyecto</a>
+      <p>Descripción corta.</p>
+    </li>
+  </ul>
+  </section>
+  
   </header>
 
   <script>
