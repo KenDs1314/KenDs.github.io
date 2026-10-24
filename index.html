@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KENDS WEB</title>
+  <title>Kends web</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="stylesheet" href="css/index.css">
   <script src="js/index.js" defer></script>
   <style>
@@ -183,6 +186,50 @@
     .panel a { color: var(--verde); }
     .panel p { margin: 4px 0 0; }
 
+    .ep {
+      margin-bottom: 14px;
+      padding: 12px 14px;
+      border: 1px dashed var(--violeta);
+    }
+
+    .ep-cinta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+      color: var(--verde);
+      font-size: .8rem;
+    }
+
+    .ep-num {
+      padding: 1px 8px;
+      background: var(--verde);
+      color: #000;
+      font-weight: bold;
+    }
+
+    .ep-estado { margin-left: auto; color: var(--plata); }
+
+    .ep-estado::before {
+      content: "";
+      display: inline-block;
+      width: .6em;
+      height: .6em;
+      margin-right: .5em;
+      border-radius: 50%;
+      background: var(--rojo);
+      box-shadow: 0 0 6px var(--rojo);
+      animation: parpadeo 1.2s steps(1) infinite;
+    }
+
+    .ep a {
+      display: inline-block;
+      font-family: 'indie', sans-serif;
+      font-size: 1.4rem;
+      text-decoration: none;
+      text-shadow: 0 0 8px var(--verde);
+    }
+
     details {
       margin-bottom: 12px;
       border: 1px dashed var(--violeta);
@@ -231,7 +278,7 @@
     body.cargando { overflow: hidden; }
 
     @media (prefers-reduced-motion: reduce) {
-      h1, .rec::before { animation: none; }
+      h1, .rec::before, .ep-estado::before { animation: none; }
       #crt { display: none; }
     }
   </style>
@@ -279,11 +326,21 @@
   <section id="proyectos" class="panel">
     <h2>Proyectos</h2>
     <ul>
-      <li>
+      <li class="ep">
+        <div class="ep-cinta">
+          <span class="ep-num">EP.01</span>
+          <span>[web]</span>
+          <span class="ep-estado">en edición</span>
+        </div>
         <a href="https://github.com/KENDS1314/nombre-repo">proyecto 1</a>
         <p>pssss no leas aqui todavia </p>
       </li>
-      <li>
+      <li class="ep">
+        <div class="ep-cinta">
+          <span class="ep-num">EP.02</span>
+          <span>[software]</span>
+          <span class="ep-estado">próximamente</span>
+        </div>
         <a href="#proyectos">Otro proyecto</a>
         <p>te dije que no msh</p>
       </li>
